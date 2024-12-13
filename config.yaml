@@ -1,0 +1,152 @@
+server:
+#  debug: true
+spider:
+  - label: '齐云代理'
+    method: 'GET'
+    interval: 3
+    target:
+      - "https://proxy.ip3366.net/free/?action=china&page=1"
+      - "https://proxy.ip3366.net/free/?action=china&page=2"
+      - "https://proxy.ip3366.net/free/?action=china&page=3"
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +https://www.google.com/bot.html)'
+    match:
+      address: '\"IP\">(\d+?\.\d+?.\d+?\.\d+?)</td>'
+      port: '\"PORT\">(\d+?)</td>'
+
+  - label: "89代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "https://www.89ip.cn/index_1.html"
+      - "https://www.89ip.cn/index_2.html"
+      - "https://www.89ip.cn/index_3.html"
+    match:
+      address: '<td>[\s]*?(\d+?\.\d+?.\d+?\.\d+?)[\s]*?</td>'
+      port: '<td>[\s]*?\d+?\.\d+?.\d+?\.\d+?[\s]*?</td>[\s]*?<td>[\s]*?(\d+?)[\s]*?</td>'
+
+  #每天需要跟换地址
+  - label: "开心代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "http://www.kxdaili.com/daili/ip/7713.html"
+    match:
+      address: '\[.+?\](\d+?\.\d+?.\d+?\.\d+?):\d+?@.+?#'
+      port: '\[.+?\]\d+?\.\d+?.\d+?\.\d+?:(\d+?)@.+?#'
+
+  - label: "快代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "http://www.ip3366.net/?stype=1&page=1"
+      - "http://www.ip3366.net/?stype=1&page=2"
+      - "http://www.ip3366.net/?stype=3&page=1"
+      - "http://www.ip3366.net/?stype=3&page=2"
+    match:
+      address: '<td>[\s]*?(\d+?\.\d+?.\d+?\.\d+?)[\s]*?</td>'
+      port: '<td>[\s]*?\d+?\.\d+?.\d+?\.\d+?[\s]*?</td>[\s]*?<td>[\s]*?(\d+?)[\s]*?</td>'
+
+  - label: "高可用代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "https://ip.jiangxianli.com/?page=1"
+    match:
+      address: '<td>[\s]*?(\d+?\.\d+?.\d+?\.\d+?)[\s]*?</td>'
+      port: '<td>[\s]*?\d+?\.\d+?.\d+?\.\d+?[\s]*?</td>[\s]*?<td>[\s]*?(\d+?)[\s]*?</td>'
+
+  - label: "小舒代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "https://xsdaili.cn/dayProxy/ip/1796.html"
+    match:
+      address: '(\d+?\.\d+?.\d+?\.\d+?):\d+?@.+?#\[.+?\]'
+      port: '\d+?\.\d+?.\d+?\.\d+?:(\d+?)@.+?#\[.+?\]'
+
+  - label: "命运零代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "http://proxylist.fatezero.org/proxy.list"
+    match:
+      address: '\"host\": \"(.+?)\"'
+      port: '\"port\": (\d+)'
+
+  - label: '自由代理'
+    method: 'GET'
+    headers:
+      #需要使用cookie,不然会有验证
+      user-agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'
+    target:
+      - "https://www.freeproxylists.net/zh/?c=CN&u=50&page=1"
+    match:
+      address: '%3e(.{0,60}?)%3c%2f'
+      port: 'center\">(\d+?)</td><td'
+
+  - label: "db代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "http://proxydb.net/?protocol=http&country=CN"
+      - "http://proxydb.net/?protocol=https&country=CN"
+      - "http://proxydb.net/?protocol=socks5&country=CN"
+    match:
+      address: 'href=\"/(\d+?\.\d+?.\d+?\.\d+?)/\d+?#http.{0,1}\">'
+      port: 'href=\"/\d+?\.\d+?.\d+?\.\d+?/(\d+?)#http.{0,1}\">'
+
+  - label: "hidemy代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "https://hidemy.name/cn/proxy-list/?maxtime=1000&type=h#list"
+      - "https://hidemy.name/cn/proxy-list/?maxtime=1000&type=h&start=64#list"
+      - "https://hidemy.name/cn/proxy-list/?maxtime=1000&type=h&start=128#list"
+      - "https://hidemy.name/cn/proxy-list/?maxtime=5000&type=5#list"
+      - "https://hidemy.name/cn/proxy-list/?maxtime=5000&type=s#list"
+    match:
+      address: '<td>(\d+?\.\d+?.\d+?\.\d+?)</td><td>\d+</td>'
+      port: '<td>\d+?\.\d+?.\d+?\.\d+?</td><td>(\d+)</td>'
+
+  - label: "scrape代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+    target:
+      - "https://api.proxyscrape.com/v2/?request=getproxies&protocol=http&timeout=10000&country=CN&ssl=all&anonymity=all"
+    match:
+      address: '(\d+?\.\d+?.\d+?\.\d+?):\d+'
+      port: '\d+?\.\d+?.\d+?\.\d+?:(\d+)'
+
+  - label: "my代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+    target:
+      - "https://www.my-proxy.com/free-socks-5-proxy.html"
+      - "https://www.my-proxy.com/free-elite-proxy.html"
+      - "https://www.my-proxy.com/free-anonymous-proxy.html"
+    match:
+      address: '>(\d+?\.\d+?.\d+?\.\d+?):\d+#'
+      port: '>\d+?\.\d+?.\d+?\.\d+?:(\d+)#'
+
+  - label: "proxy代理"
+    method: 'GET'
+    headers:
+      user-agent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36'
+    target:
+      - "https://free-proxy-list.net/"
+      - "https://www.us-proxy.org/"
+      - "https://www.socks-proxy.net/"
+    match:
+      address: '(\d+?\.\d+?.\d+?\.\d+?):\d+'
+      port: '\d+?\.\d+?.\d+?\.\d+?:(\d+)'
