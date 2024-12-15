@@ -180,7 +180,7 @@ func run(spi Spider, executor func()) {
 			ok, elem := verify(i, p)
 			if !ok {
 				logger.Debugf("[%s:%d] : verify failed", i, p)
-				delete(ElemMap, Elem{Source: spi.Label, Addr: i, Port: p}.String())
+				// delete(ElemMap, Elem{Source: spi.Label, Addr: i, Port: p}.String())
 				continue
 			}
 
